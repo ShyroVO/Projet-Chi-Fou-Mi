@@ -49,7 +49,6 @@ buttonStart.addEventListener('click', startGame );
 function startGame(){
     chiFouMiScreen.removeChild(buttonStart);
     carteUser();
-
 }
 
 function carteUser (){
@@ -71,25 +70,21 @@ function getRandom () {
 let ordiChoix;
 
 function choixOrdi () {
-    console.log("random vaut: " + getRandom());
-    console.log(ordiChoix);
-
     if (ordiChoix === 0) {
         ordiChoixChiFouMi = "Chi";
         chiFouMiScreen.appendChild(chiPc);
-        chiPc.style.border = "solid red 0.5rem";
+        chiPc.style.border = "solid coral 0.5rem";
     }
     else if (ordiChoix === 1) {
         ordiChoixChiFouMi = "Fou";
         chiFouMiScreen.appendChild(fouPc);
-        fouPc.style.border = "solid red 0.5rem";
+        fouPc.style.border = "solid coral 0.5rem";
     }
     else if (ordiChoix === 2) {
         ordiChoixChiFouMi = "Mi";
         chiFouMiScreen.appendChild(miPc);
-        miPc.style.border = "solid red 0.5rem";
+        miPc.style.border = "solid coral 0.5rem";
     }
-
     results();
 }
 
@@ -134,24 +129,18 @@ mi.addEventListener('click', function choixMi(){
 // Results:
 function results (){
     if (userChoix === 0 && ordiChoix === 0 || userChoix === 1 && ordiChoix === 1 || userChoix === 2 && ordiChoix === 2 ) {
-        getRandom();
         setTimeout(relance, 2000);
     }
-
     else if (userChoix === 0 && ordiChoix === 2 || userChoix === 1 && ordiChoix === 0 || userChoix === 2 && ordiChoix === 1 ) {
-        getRandom();
         userPts++
         document.getElementById('userPts').innerHTML = userPts;
         setTimeout(relance, 2000);
     }
-
     else if (userChoix === 2 && ordiChoix === 0 || userChoix === 0 && ordiChoix === 1 || userChoix === 1 && ordiChoix === 2 ) {
-        getRandom();
         ordiPts++
         document.getElementById('ordiPts').innerHTML = ordiPts;
         setTimeout(relance, 2000);
     }
-
 }
 
 // Relance:
@@ -165,3 +154,13 @@ function relance () {
 function historique () {
     document.getElementById('historique').innerHTML += "Ordi: " + ordiChoixChiFouMi + " - " + "User: " + userChoixChiFouMi + "<br>";
 }
+
+// Reset:
+document.getElementById('resetTotal').addEventListener('click', function (){
+    userPts = 0;
+    ordiPts = 0;
+    document.getElementById('userPts').innerHTML = userPts;
+    document.getElementById('ordiPts').innerHTML = ordiPts;
+    document.getElementById('historique').innerHTML = "";
+    carteUser();
+})

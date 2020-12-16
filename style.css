@@ -27,9 +27,14 @@ body {
     align-items: center;
 }
 
-.startButton {
+.startButton, #resetTotal {
     width: 10rem;
     height: 2rem;
+    border: solid darkseagreen 0.2rem ;
+}
+
+.startButton:hover, #resetTotal:hover {
+    border: solid coral 0.2rem ;
 }
 
 #affichageGeneral {
@@ -40,4 +45,22 @@ body {
 
     border: solid darkseagreen 0.5rem;
     width: 100%;
+}
+
+#historique {
+    text-align: center;
+    width: 100%;
+    height: 10rem;
+    overflow: auto;
+}
+
+@media screen and (max-width: 540px) {
+    #chiFouMiScreen {
+        flex-direction: column;
+        height: 40rem;
+    }
+
+    #historique {
+        height: 4rem;
+    }
 }
