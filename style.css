@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 62.5%;
+}
+
+#contenues {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+#title {
+    height: 4rem;
+}
+
+#chiFouMiScreen {
+    height: 20rem;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.startButton {
+    width: 10rem;
+    height: 2rem;
+}
+
+#affichageGeneral {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+    border: solid darkseagreen 0.5rem;
+    width: 100%;
+}
