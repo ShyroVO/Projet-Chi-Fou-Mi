@@ -62,76 +62,91 @@ function carteUser (){
 }
 
 //ORDI:
-let ordiChoix = Math.floor(Math.random()* (1 + 3));
+let ordiChoixChiFouMi;
+
+function getRandom () {
+    return Math.floor(Math.random()* 3);
+}
+
+let ordiChoix;
 
 function choixOrdi () {
-    if (ordiChoix === 1) {
+    console.log("random vaut: " + getRandom());
+    console.log(ordiChoix);
+
+    if (ordiChoix === 0) {
+        ordiChoixChiFouMi = "Chi";
         chiFouMiScreen.appendChild(chiPc);
         chiPc.style.border = "solid red 0.5rem";
     }
-    else if (ordiChoix === 2) {
+    else if (ordiChoix === 1) {
+        ordiChoixChiFouMi = "Fou";
         chiFouMiScreen.appendChild(fouPc);
         fouPc.style.border = "solid red 0.5rem";
     }
-    else if (ordiChoix === 3) {
+    else if (ordiChoix === 2) {
+        ordiChoixChiFouMi = "Mi";
         chiFouMiScreen.appendChild(miPc);
         miPc.style.border = "solid red 0.5rem";
     }
+
+    results();
 }
 
 // USER:
 let userChoix = 0;
+let userChoixChiFouMi;
 
 chi.addEventListener('click', function choixChi(){
     chi.style.border = "solid darkseagreen 0.5rem";
-    userChoix = 1;
+    userChoix = 0;
+    userChoixChiFouMi = "Chi";
+    ordiChoix = getRandom();
 
     chiFouMiScreen.removeChild(fou);
     chiFouMiScreen.removeChild(mi);
     choixOrdi()
-
-    console.log(ordiChoix);
-    results();
 
 });
 
 fou.addEventListener('click', function choixFou(){
     fou.style.border = "solid darkseagreen 0.5rem";
-    userChoix = 2;
+    userChoix = 1;
+    userChoixChiFouMi = "Fou";
+    ordiChoix = getRandom();
 
     chiFouMiScreen.removeChild(chi);
     chiFouMiScreen.removeChild(mi);
     choixOrdi()
-
-    console.log(ordiChoix);
-    results();
 });
 
 mi.addEventListener('click', function choixMi(){
     mi.style.border = "solid darkseagreen 0.5rem";
-    userChoix = 3;
+    userChoix = 2;
+    userChoixChiFouMi = "Mi";
+    ordiChoix = getRandom();
 
     chiFouMiScreen.removeChild(chi);
     chiFouMiScreen.removeChild(fou);
     choixOrdi()
-
-    console.log(ordiChoix);
-    results();
 });
 
 // Results:
 function results (){
-    if (userChoix === 1 && ordiChoix === 1 || userChoix === 2 && ordiChoix === 2 || userChoix === 3 && ordiChoix === 3 ) {
+    if (userChoix === 0 && ordiChoix === 0 || userChoix === 1 && ordiChoix === 1 || userChoix === 2 && ordiChoix === 2 ) {
+        getRandom();
         setTimeout(relance, 2000);
     }
 
-    else if (userChoix === 1 && ordiChoix === 3 || userChoix === 2 && ordiChoix === 1 || userChoix === 3 && ordiChoix === 2 ) {
+    else if (userChoix === 0 && ordiChoix === 2 || userChoix === 1 && ordiChoix === 0 || userChoix === 2 && ordiChoix === 1 ) {
+        getRandom();
         userPts++
         document.getElementById('userPts').innerHTML = userPts;
         setTimeout(relance, 2000);
     }
 
-    else if (userChoix === 3 && ordiChoix === 1 || userChoix === 1 && ordiChoix === 2 || userChoix === 2 && ordiChoix === 3 ) {
+    else if (userChoix === 2 && ordiChoix === 0 || userChoix === 0 && ordiChoix === 1 || userChoix === 1 && ordiChoix === 2 ) {
+        getRandom();
         ordiPts++
         document.getElementById('ordiPts').innerHTML = ordiPts;
         setTimeout(relance, 2000);
@@ -143,10 +158,10 @@ function results (){
 function relance () {
     chiFouMiScreen.innerHTML= "";
     carteUser();
+    historique();
 }
 
 // Historique:
 function historique () {
-    document.getElementById('historique').innerHTML += Ordi;
-
+    document.getElementById('historique').innerHTML += "Ordi: " + ordiChoixChiFouMi + " - " + "User: " + userChoixChiFouMi + "<br>";
 }
